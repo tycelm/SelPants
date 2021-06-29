@@ -11,7 +11,6 @@ public class DialogueDisplay : MonoBehaviour
     public GameObject player;
     public Animator animatorleft;
     public Animator animatorright;
-    private CharacterController2D myPlayer;
     private SpeakerUI speakerUILeft;
     private SpeakerUI speakerUIRight;
 
@@ -25,7 +24,6 @@ public class DialogueDisplay : MonoBehaviour
         speakerUILeft.Speaker = conversation.speakerLeft;
         speakerUIRight.Speaker = conversation.speakerRight;
 
-        myPlayer = player.GetComponent<CharacterController2D>();
     }
 
     void Update()
@@ -42,7 +40,6 @@ public class DialogueDisplay : MonoBehaviour
         animatorright.SetBool("IsOpen", false);
         if (activeLineIndex < conversation.lines.Length)
         {
-            myPlayer.canMove = false;
             DisplayLine();
             activeLineIndex += 1;
         }
@@ -51,7 +48,6 @@ public class DialogueDisplay : MonoBehaviour
             speakerUILeft.Hide();
             speakerUIRight.Hide();
             activeLineIndex = conversation.lines.Length - 1;
-            myPlayer.canMove = true;
         }
 
         void DisplayLine()
